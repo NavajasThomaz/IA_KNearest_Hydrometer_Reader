@@ -15,7 +15,7 @@ while True:
     #stream()
 
     #Abre a imagem crua
-    imgRaw = cv2.imread(f"C:\\Users\\AUGEN12\\PycharmProjects\\HidroReader\\Esp32Pics\\Pics\\frame.jpg")
+    imgRaw = cv2.imread("Esp32-Cam\\TempPics\\frame.jpg")
 
     #Pega as dimensões da imagem crua
     hImg, wImg, _ = imgRaw.shape
