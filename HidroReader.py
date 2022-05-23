@@ -77,9 +77,17 @@ while True:
     #cv2.waitKey()
     #cv2.destroyAllWindows()
 
-    response, samples, quit = trainData(imgRaw,response,samples)
-    if quit:
-        break
-    #cv2.waitKey(0)
-SaveTrainData(response,samples)
-    #ExecuteIA(imgRaw)
+    #x:99
+    #y:75
+    #w:98
+    #h:32
+
+    # im = im[99:75, 98 + 99:75 + 32]
+    imgCut = imgRaw[75:107, 99:197]
+    imgZ = image_resize(imgCut,196,64)
+    #response, samples, quit = trainData(imgZ,response,samples)
+    #if quit:
+        #break
+    cv2.waitKey(0)
+#SaveTrainData(response,samples)
+    ExecuteIA(imgZ)

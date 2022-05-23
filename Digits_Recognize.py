@@ -7,10 +7,22 @@ from Img_Treatment import FindPoints, RecInsideRec
 def ExecuteIA(im):
 
     #Localização dos Digitos na imagem
+    '''
     XHi = 20
     XHf = 310
     YHi = 40
     YHf = 140
+
+    XHi = 99
+    XHf = 197
+    YHi = 75
+    YHf = 107
+
+    '''
+    XHi = 0
+    XHf = 197
+    YHi = 0
+    YHf = 107
 
     #######   training part    ###############
     samples = np.loadtxt('generalsamples.data', np.float32)

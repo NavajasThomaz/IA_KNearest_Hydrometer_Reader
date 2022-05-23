@@ -23,6 +23,7 @@ def trainData(im,responses,samples):
 
             if h > 28:
                 cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                print(f'x:{x}\ny:{y}\nw:{w}\nh:{h}')
                 roi = thresh[y:y + h, x:x + w]
                 roismall = cv2.resize(roi, (10, 10))
                 cv2.imshow('norm', im)
