@@ -54,20 +54,21 @@ def RecInsideRec(x1, y1, x2, y2, X1, Y1, X2, Y2):
         return False
 
 def RecVideo(name):
-    for f in range(30):
+    for f in range(10):
         streamVid(f"{name}{f}")
 
     frameSize = (320, 240)
 
-    out = cv2.VideoWriter(f"C:\\Users\\AUGEN12\\PycharmProjects\\HidroReader\\Esp32Pics\\Videos\\output_video.avi", cv2.VideoWriter_fourcc(*'DIVX'), 10, frameSize)
+    out = cv2.VideoWriter('Esp32-Cam\\Video\\OutPutVideo.avi', cv2.VideoWriter_fourcc(*'DIVX'), 10, frameSize)
 
-    for filename in glob.glob(f"C:\\Users\\AUGEN12\\PycharmProjects\\HidroReader\\Esp32Pics\\Videos\\Temp\\*.jpg"):
+    for filename in glob.glob('Esp32-Cam\\TempFrames\\*.jpg'):
         img = cv2.imread(filename)
         out.write(img)
 
     out.release()
 
-def CutDisc(Frame):
+def DetectMovement(Frame):
+
     return Frame[0:320,0:240]
 
 #RecVideo("test")

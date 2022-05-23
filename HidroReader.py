@@ -12,7 +12,7 @@ samples = np.empty((0, 100))
 while True:
 
     #Chama o stream
-    #stream()
+    stream()
 
     #Abre a imagem crua
     imgRaw = cv2.imread("Esp32-Cam\\TempPics\\frame.jpg")

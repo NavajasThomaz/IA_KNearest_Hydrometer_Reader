@@ -14,7 +14,7 @@ def stream():
         r.raw.decode_content = True
 
         # Open a local file with wb ( write binary ) permission.
-        with open("C:\\Users\\AUGEN12\\PycharmProjects\\HidroReader\\Esp32Pics\\Pics\\frame.jpg", 'wb') as f:
+        with open("Esp32-Cam\\TempPics\\frame.jpg", 'wb') as f:
             shutil.copyfileobj(r.raw, f)
 
         return print('Image sucessfully Downloaded: ', filename)
@@ -29,7 +29,7 @@ def streamVid(name):
         r.raw.decode_content = True
 
         # Open a local file with wb ( write binary ) permission.
-        with open(f"C:\\Users\\AUGEN12\\PycharmProjects\\HidroReader\\Esp32Pics\\Videos\\Temp\\{name}.jpg", 'wb') as f:
+        with open(f'Esp32-Cam\\TempFrames\\{name}.jpg', 'wb') as f:
             shutil.copyfileobj(r.raw, f)
 
         return print('Image sucessfully Downloaded: ', filename)
