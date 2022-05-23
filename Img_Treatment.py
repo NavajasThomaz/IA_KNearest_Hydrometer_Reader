@@ -114,4 +114,4 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
     # return the resized image
     return resized
 
-# RecVideo("test")
+RecVideo("test")
