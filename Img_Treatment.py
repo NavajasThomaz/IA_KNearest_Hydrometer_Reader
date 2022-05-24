@@ -1,6 +1,9 @@
+import os
+
 import cv2
 import numpy as np
 import glob
+import io
 from Arduino_Stream import streamVid
 
 
@@ -64,7 +67,7 @@ def RecInsideRec(x1, y1, x2, y2, X1, Y1, X2, Y2):
         return False
 
 
-def RecVideos(name):
+def RecVideo(name):
     for f in range(10):
         streamVid(f"{name}{f}")
 
@@ -77,6 +80,11 @@ def RecVideos(name):
         out.write(img)
 
     out.release()
+
+def ClearTempFrames():
+    for i in range(0,9,1):
+        return 0
+        #os.remove(f'frame{i}.jpg')
 
 
 def DetectMovement(Frame):

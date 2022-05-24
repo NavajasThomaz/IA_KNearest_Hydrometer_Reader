@@ -32,7 +32,7 @@ def streamVid(name):
         with open(f'Esp32-Cam\\TempFrames\\{name}.jpg', 'wb') as f:
             shutil.copyfileobj(r.raw, f)
 
-        return print('Image sucessfully Downloaded: ', filename)
+        return 1    #print('Image sucessfully Downloaded: ', filename)
     else:
         return print('Image Couldn\'t be retreived')
 
