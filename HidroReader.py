@@ -58,7 +58,7 @@ while True:
     #cv2.rectangle(imgRaw, (x, hImg - y), (w, hImg - h), (50, 50, 255), 1)
     #cv2.putText(imgRaw, b[0], (x, hImg - y + 13), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (50, 205, 50), 1)
 
-    #Sem litura
+    #Sem leitura
     #if leitura.strip() == "":
         #print(f"(Sem Leitura)")
         #cv2.putText(imgRaw, "Sem Leitura", (int(hImg / 3), int(wImg / 3)), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 2)
