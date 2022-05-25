@@ -1,8 +1,8 @@
-import sys
 import numpy as np
 import cv2
 
-def trainData(im,responses,samples):
+
+def trainData(im, responses, samples):
 
     im3 = im.copy()
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
@@ -39,7 +39,8 @@ def trainData(im,responses,samples):
                     samples = np.append(samples, sample, 0)
     return responses, samples, False
 
-def SaveTrainData(responses,samples):
+
+def SaveTrainData(responses, samples):
     responses = np.array(responses, np.float32)
     responses = responses.reshape((responses.size, 1))
     print("training complete")

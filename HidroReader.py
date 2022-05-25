@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-
 from Arduino_Stream import stream
 from Img_Treatment import *
 from IA_Training import *

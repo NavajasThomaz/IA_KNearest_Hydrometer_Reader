@@ -1,9 +1,6 @@
-import os
-
 import cv2
 import numpy as np
 import glob
-import io
 from Arduino_Stream import streamVid
 
 
@@ -81,6 +78,7 @@ def RecVideo(name):
 
     out.release()
 
+
 def ClearTempFrames():
     for i in range(0,9,1):
         return 0
@@ -91,7 +89,7 @@ def DetectMovement(Frame):
     return Frame[0:320, 0:240]
 
 
-def image_resize(image, width = None, height = None, inter = cv2.INTER_AREA):
+def image_resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     # initialize the dimensions of the image to be resized and
     # grab the image size
     dim = None

@@ -1,11 +1,11 @@
 import requests  # to get image from the web
 import shutil  # to save it locally
 
-## Set up the image URL and filename
+
 image_url = "http://192.168.0.143/capture?_cb=1653312345443"
 filename = image_url.split("/")[-1]
 
-# Open the url image, set stream to True, this will return the stream content.
+
 def stream():
     r = requests.get(image_url, stream=True)
     # Check if the image was retrieved successfully
@@ -20,6 +20,7 @@ def stream():
         return print('Image sucessfully Downloaded: ', filename)
     else:
         return print('Image Couldn\'t be retreived')
+
 
 def streamVid(name):
     r = requests.get(image_url, stream=True)
