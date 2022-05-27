@@ -111,8 +111,6 @@ void setup() {
 }
 
 void loop() {
-  capturePhotoSaveSpiffs();
-  Serial.println("takingPhotos...");
   delay(10000);
 }
 bool checkPhoto( fs::FS &fs ) {
