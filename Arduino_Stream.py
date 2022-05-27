@@ -2,7 +2,7 @@ import requests  # to get image from the web
 import shutil  # to save it locally
 
 
-image_url = "|-YOURIPHERE-|/capture?_cb=1653312345443"
+image_url = "http://192.168.0.143/capture?_cb=1653312345443"
 filename = image_url.split("/")[-1]
 
 

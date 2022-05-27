@@ -1,8 +1,13 @@
 import numpy as np
 import cv2
+from Img_Treatment import RecInsideRec
 
+XHi = 200
+XHf = 700
+YHi = 250
+YHf = 400
 
-def trainData(im, responses, samples):
+def trainData(im,  responses, samples):
 
     im3 = im.copy()
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
@@ -21,7 +26,7 @@ def trainData(im, responses, samples):
         if cv2.contourArea(cnt) > 50:
             [x, y, w, h] = cv2.boundingRect(cnt)
 
-            if h > 28:
+            if h > 28 and RecInsideRec(x, y, x + w, y + h, XHi, YHi, XHf, YHf):
                 cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 2)
                 print(f'x:{x}\ny:{y}\nw:{w}\nh:{h}')
                 roi = thresh[y:y + h, x:x + w]
@@ -47,3 +52,5 @@ def SaveTrainData(responses, samples):
 
     np.savetxt('generalsamples.data', samples)
     np.savetxt('generalresponses.data', responses)
+
+

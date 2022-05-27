@@ -70,7 +70,7 @@ def RecVideo(name):
 
     frameSize = (320, 240)
 
-    out = cv2.VideoWriter('Esp32-Cam\\Video\\OutPutVideo.avi', cv2.VideoWriter_fourcc(*'DIVX'), 10, frameSize)
+    out = cv2.VideoWriter(f'Esp32-Cam\\Video\\{name}.avi', cv2.VideoWriter_fourcc(*'DIVX'), 10, frameSize)
 
     for filename in glob.glob('Esp32-Cam\\TempFrames\\*.jpg'):
         img = cv2.imread(filename)
@@ -120,4 +120,3 @@ def image_resize(image, width=None, height=None, inter=cv2.INTER_AREA):
     # return the resized image
     return resized
 
-RecVideo("test")
