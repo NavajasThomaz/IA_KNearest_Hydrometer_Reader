@@ -1,14 +1,15 @@
 import numpy as np
 import cv2
+import time
 from Img_Treatment import RecInsideRec
+from Arduino_Stream import stream
 
 XHi = 200
 XHf = 700
 YHi = 250
 YHf = 400
 
-def trainData(im,  responses, samples):
-
+def trainData(im,  responses, samples, auto, ent):
     im3 = im.copy()
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
@@ -23,6 +24,7 @@ def trainData(im,  responses, samples):
     keys = [i for i in range(48, 58)]
 
     for cnt in contours:
+        cont = -1
         if cv2.contourArea(cnt) > 50:
             [x, y, w, h] = cv2.boundingRect(cnt)
 
@@ -32,17 +34,35 @@ def trainData(im,  responses, samples):
                 roi = thresh[y:y + h, x:x + w]
                 roismall = cv2.resize(roi, (10, 10))
                 cv2.imshow('norm', im)
-                key = cv2.waitKey(0)
-
-                if key == 27:  # (escape to quit)
-                    return responses, samples, True
-                    #sys.exit()
-
-                elif key in keys and key != 32:
-                    responses.append(int(chr(key)))
+                if auto:
+                    responses.append(ent[cont])
                     sample = roismall.reshape((1, 100))
                     samples = np.append(samples, sample, 0)
-    return responses, samples, False
+                    cont -= 1
+                else:
+                    key = cv2.waitKey(0)
+
+                    if key == 27:  # (escape to quit)
+                        return responses, samples, True
+                        #sys.exit()
+
+                    elif key in keys and key != 32:
+                        responses.append(int(chr(key)))
+                        sample = roismall.reshape((1, 100))
+                        samples = np.append(samples, sample, 0)
+    if auto:
+        print(ent)
+        time.sleep(12)
+        ent+=1
+        if ent <= 200000:
+            stream()
+            im = cv2.imread("Esp32-Cam\\TempPics\\frame.jpg")
+            trainData(im, responses, samples, auto, ent)
+        else:
+            SaveTrainData(responses, samples)
+
+    else:
+        return responses, samples, False
 
 
 def SaveTrainData(responses, samples):
@@ -54,3 +74,7 @@ def SaveTrainData(responses, samples):
     np.savetxt('generalresponses.data', responses)
 
 
+response = []
+samples = np.empty((0, 100))
+im = cv2.imread("Esp32-Cam\\TempPics\\frame.jpg")
+trainData(im, response, samples, True, 199990)

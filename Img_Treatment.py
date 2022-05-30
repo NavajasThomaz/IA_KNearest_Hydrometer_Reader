@@ -5,27 +5,32 @@ from Arduino_Stream import streamVid
 
 
 def Cinza(img):
-    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    a = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    return a
 
 
 def BrilhoContraste(img, B, C):
-    return cv2.convertScaleAbs(img, alpha=C, beta=B)
+    a = cv2.convertScaleAbs(img, alpha=C, beta=B)
+    return a
 
 
 def BGR(img):
-    return cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    a = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    return a
 
 
 def Thresh(img):
-    return cv2.threshold(Cinza(img), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    a = cv2.threshold(Cinza(img), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    return a
 
 
 def Blur(img, X, Y):
-    return cv2.blur(img, (X, Y))
+    a = cv2.blur(img, (X, Y))
+    return a
 
 
-def Countor(img, thresh):
-    cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+def Countor(img):
+    cnts = cv2.findContours(Thresh(img), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     for cnt in cnts:
         cv2.drawContours(img, cnt, -1, (0, 0, 0))
@@ -33,9 +38,9 @@ def Countor(img, thresh):
     return img
 
 
-def FindCircle(imgRaw, thresh_img, hImg, wImg):
-    detected_circles = cv2.HoughCircles(thresh_img, cv2.HOUGH_GRADIENT, 1, 250, param1=50, param2=50, minRadius=0,
-                                        maxRadius=0)
+def FindCircle(imgRaw):
+    hImg, wImg, _ = imgRaw.shape
+    detected_circles = cv2.HoughCircles(Thresh(imgRaw), cv2.HOUGH_GRADIENT, 1, 250, param1=50, param2=50, minRadius=0,maxRadius=0)
     if detected_circles is not None:
         detected_circles = np.uint16(np.around(detected_circles))
         for pt in detected_circles[0, :]:
