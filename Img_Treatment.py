@@ -4,9 +4,12 @@ import glob
 from Arduino_Stream import streamVid
 
 
+def Calibrar(img, x, y, h, w):
+    return cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+
 def Cinza(img):
-    a = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    return a
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
 def BrilhoContraste(img, B, C):
@@ -25,8 +28,7 @@ def Thresh(img):
 
 
 def Blur(img, X, Y):
-    a = cv2.blur(img, (X, Y))
-    return a
+    return cv2.blur(img, (X, Y))
 
 
 def Countor(img):
