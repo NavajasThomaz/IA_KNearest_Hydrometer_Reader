@@ -5,6 +5,8 @@ Intructions for the use:
 
 1 step (Setting Up):
 
+|ARDUINO UNO|
+
 Connect the ESP32-Cam pins in to the Arduino Uno following the part 1 of image01:
 
 Rasp |-----| Uno                Rasp |-----| Rasp                Uno |-----| Uno
@@ -12,6 +14,14 @@ Rasp |-----| Uno                Rasp |-----| Rasp                Uno |-----| Uno
 gnd         gnd
 VoT         Digital01(TX)
 Vor         Digital02(RX)
+
+|FTDI|
+
+Rasp |-----|FTDI                Rasp |-----| Rasp
+5v          Vcc                  gnd         IO0
+gnd         gnd
+VoT         TX
+Vor         RX
 
 2 step (Arduino Rasp):
 
