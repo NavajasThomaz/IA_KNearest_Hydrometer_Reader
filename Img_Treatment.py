@@ -42,7 +42,7 @@ def Countor(img):
 
 def FindCircle(imgRaw):
     hImg, wImg, _ = imgRaw.shape
-    detected_circles = cv2.HoughCircles(Thresh(imgRaw), cv2.HOUGH_GRADIENT, 1, 250, param1=50, param2=50, minRadius=0,maxRadius=0)
+    detected_circles = cv2.HoughCircles(Thresh(imgRaw), cv2.HOUGH_GRADIENT, 1, 250, param1=50, param2=50, minRadius=0, maxRadius=0)
     if detected_circles is not None:
         detected_circles = np.uint16(np.around(detected_circles))
         for pt in detected_circles[0, :]:
@@ -58,7 +58,7 @@ def FindPoints(x1, y1, x2, y2, X1, Y1, X2, Y2):
     y5 = max(y1, Y1)
     x6 = min(x2, X2)
     y6 = min(y2, Y2)
-    if (x5 > x6 or y5 > y6):
+    if x5 > x6 or y5 > y6:
         return False
     else:
         return True
@@ -87,7 +87,7 @@ def RecVideo(name):
 
 
 def ClearTempFrames():
-    for i in range(0,9,1):
+    for i in range(0, 9, 1):
         return 0
         #os.remove(f'frame{i}.jpg')
 
@@ -122,8 +122,7 @@ def image_resize(image, width=None, height=None, inter=cv2.INTER_AREA):
         dim = (width, int(h * r))
 
     # resize the image
-    resized = cv2.resize(image, dim, interpolation = inter)
+    resized = cv2.resize(image, dim, interpolation=inter)
 
     # return the resized image
     return resized
-

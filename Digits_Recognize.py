@@ -8,13 +8,11 @@ from Img_Treatment import FindPoints, RecInsideRec
 def ExecuteIA(im):
 
     #Localização dos Digitos na imagem
-    '''
+    """
     XHi = 20
     XHf = 310
     YHi = 40
     YHf = 140
-
-
 
     XHi = 200
     XHf = 700
@@ -25,7 +23,7 @@ def ExecuteIA(im):
     XHf = 197
     YHi = 75
     YHf = 107
-    '''
+    """
     A_cali_File = open("data\\cali.txt","r")
     A_cali = str(A_cali_File.read()).split()
     XHi, XHf, YHi, YHf = A_cali

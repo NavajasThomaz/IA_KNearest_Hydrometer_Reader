@@ -111,7 +111,7 @@ def Cali(imgRaw):
     imgH, imgW, imgC = imgRaw.shape
 
     cv2.destroyAllWindows()
-    trackWinCv = cv2.namedWindow("Cutting")
+    cv2.namedWindow("Cutting")
     cv2.resizeWindow("Cutting", 640, 240)
     cv2.createTrackbar("X_Amount", "Cutting", 0, imgW, Empty)
     cv2.createTrackbar("Y_Amount", "Cutting", 0, imgH, Empty)
@@ -129,7 +129,7 @@ def Cali(imgRaw):
         if key == 27:
             A_cali = [X_Track, X_Point, Y_Track, Y_Point]
             cv2.destroyAllWindows()
-            save = open("data\\cali.txt",'w')
+            save = open("data\\cali.txt", 'w')
             save.write(f"{X_Track} {X_Point} {Y_Track} {Y_Point}")
             save.close()
             print(str(A_cali))
@@ -137,7 +137,7 @@ def Cali(imgRaw):
 
 
 def train(imgRaw):
-    A_cali_file = open("data\\cali.txt","r")
+    A_cali_file = open("data\\cali.txt", "r")
     A_cali = str(A_cali_file.read()).split()
 
     # Treina
@@ -148,13 +148,14 @@ def train(imgRaw):
 
 
 def Empty(a):
+    a += a
     pass
 
 
 def Done(imgRaw):
     if brco.get() == 1:
         cv2.destroyAllWindows()
-        trackWinCv = cv2.namedWindow("Brilho e Constraste")
+        cv2.namedWindow("Brilho e Constraste")
         cv2.resizeWindow("Brilho e Constraste", 640, 240)
         cv2.createTrackbar("Brilho", "Brilho e Constraste", 1, 100, Empty)
         cv2.createTrackbar("Contraste", "Brilho e Constraste", 1, 100, Empty)
@@ -164,7 +165,7 @@ def Done(imgRaw):
             Contraste = cv2.getTrackbarPos("Contraste", "Brilho e Constraste")
             key = cv2.waitKey(1)
             if (Brilho != 0) and (Contraste != 0):
-                preview = cv2.imshow("PREVIEW", BrilhoContraste(imgRaw, Brilho, Contraste))
+                cv2.imshow("PREVIEW", BrilhoContraste(imgRaw, Brilho, Contraste))
             if key == 27:
                 cv2.destroyAllWindows()
                 imgRaw = BrilhoContraste(imgRaw, Brilho, Contraste)
@@ -181,7 +182,7 @@ def Done(imgRaw):
         print("Binário")
     if blu.get() == 1:
         cv2.destroyAllWindows()
-        trackWinCv = cv2.namedWindow("Trackers")
+        cv2.namedWindow("Trackers")
         cv2.resizeWindow("Trackers", 640, 240)
         cv2.createTrackbar("X_Amount", "Trackers", 0, 50, Empty)
         cv2.createTrackbar("Y_Amount", "Trackers", 0, 50, Empty)
@@ -202,7 +203,7 @@ def Done(imgRaw):
     if cut.get() == 1:
         imgH, imgW, imgC = imgRaw.shape
         cv2.destroyAllWindows()
-        trackWinCv = cv2.namedWindow("Cutting")
+        cv2.namedWindow("Cutting")
         cv2.resizeWindow("Cutting", 640, 240)
         cv2.createTrackbar("X_Amount", "Cutting", imgW, imgW, Empty)
         cv2.createTrackbar("Y_Amount", "Cutting", imgH, imgH, Empty)
@@ -304,7 +305,7 @@ button_explore = Button(IniWindow,
                         pady=py)
 button_explore.grid(column=0, row=1)
 
-# Tira Foto
+# Tirar Foto
 streamButton = Button(IniWindow,
                       text="Tirar Foto",
                       command=lambda: TakePhoto(showing=True),
@@ -435,14 +436,14 @@ DoneButton.grid(column=1, row=3)
 
 # Calibração
 CaliButton = Button(IaWindow,
-                         text="Calibração",
-                         justify=LEFT,
-                         width=but_wid,
-                         height=but_hei,
-                         command=lambda: Cali(imgRaw),
-                         padx=px,
-                         pady=py,
-                         background=btbkF)
+                    text="Calibração",
+                    justify=LEFT,
+                    width=but_wid,
+                    height=but_hei,
+                    command=lambda: Cali(imgRaw),
+                    padx=px,
+                    pady=py,
+                    background=btbkF)
 CaliButton.grid(column=0, row=2)
 
 # Treino
@@ -489,15 +490,10 @@ CircButton = Button(IaWindow,
                     background=btbkI)
 CircButton.grid(column=1, row=1)
 
-
-
-
-
 # Loop Janela
 IniWindow.mainloop()
 TreWindow.mainloop()
 IaWindow.mainloop()
-
 
 # x:99
 # y:75
