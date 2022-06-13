@@ -21,7 +21,7 @@ def BGR(img):
     a = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     return a
 
-
+#Binario
 def Thresh(img):
     a = cv2.threshold(Cinza(img), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     return a
@@ -85,7 +85,7 @@ def RecVideo(name):
 
     out.release()
 
-
+#limpar frames temporarios
 def ClearTempFrames():
     for i in range(0, 9, 1):
         return 0

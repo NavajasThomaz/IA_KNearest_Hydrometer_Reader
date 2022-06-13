@@ -27,7 +27,7 @@ blu = tkinter.IntVar()
 cont = tkinter.IntVar()
 cut = tkinter.IntVar()
 
-
+#Abre foto de arquivo
 def browseFiles(showing):
     global imgRaw
     if showing:
@@ -41,13 +41,13 @@ def browseFiles(showing):
     preview = cv2.imshow("PREVIEW", imgRaw)
     return preview
 
-
+#Botão nome do video
 def ButtonsGetVid(But, winVidName):
     name = But.get()
     RecVideo(f"{name}")
     winVidName.destroy()
 
-
+#Grava foto
 def TakePhoto(showing):
     # Fecha se ouver alguma imagem aberta
     if showing:
@@ -61,12 +61,13 @@ def TakePhoto(showing):
     global imgRaw
     imgRaw = cv2.imread("Esp32-Cam\\TempPics\\frame.jpg")
 
-    # Pega as dimensões da imagem crua
+    # Change label contents
+    label_file_explorer.configure(text="Instant Image", fg="green")
 
     cv2.imshow("Photo", imgRaw)
     return imgRaw
 
-
+#Grava video
 def TakeVid():
     # Fecha se houver alguma imagem aberta
     winVidName = Tk()
@@ -84,7 +85,7 @@ def TakeVid():
     # imgRaw = cv2.imread("Esp32-Cam\\TempPics\\frame.jpg")
     cv2.imshow("Photo", imgRaw)
 
-
+#Botão brilho e contraste
 def ButtonsGetBrCo(brilho, constraste, winBrCo):
     # Nivel dos filtros
     # Contraste = 0.5  # Contrast control (1.0-3.0)
@@ -96,17 +97,17 @@ def ButtonsGetBrCo(brilho, constraste, winBrCo):
     imgRaw = BrilhoContraste(imgRaw, int(Brilho), float(Contraste))
     return imgRaw
 
-
+#Executa a rede
 def IA_Execute(imgRaw):
     ExecuteIA(imgRaw)
 
-
+#Acha circulos na imagem
 def circulo():
     # Procura e desenha circulos
     global imgRaw
     return cv2.imshow("PREVIEW", FindCircle(imgRaw))
 
-
+#Calibragem
 def Cali(imgRaw):
     imgH, imgW, imgC = imgRaw.shape
 
@@ -135,7 +136,7 @@ def Cali(imgRaw):
             print(str(A_cali))
             break
 
-
+#Treino
 def train(imgRaw):
     A_cali_file = open("data\\cali.txt", "r")
     A_cali = str(A_cali_file.read()).split()
@@ -146,12 +147,12 @@ def train(imgRaw):
     response, samples, quit = trainData(imgRaw, response, samples, auto=False, ent=199999, A_cali=A_cali)
     return SaveTrainData(response, samples)
 
-
+#Função Vazia
 def Empty(a):
     a += a
     pass
 
-
+#Botões Interface
 def Done(imgRaw):
     if brco.get() == 1:
         cv2.destroyAllWindows()
@@ -225,7 +226,7 @@ def Done(imgRaw):
     print("")
     return cv2.imshow("PREVIEW", imgRaw)
 
-
+#Fecha todas Janelas
 def CloseAll():
     cv2.destroyAllWindows()
     IniWindow.destroy()
@@ -234,6 +235,7 @@ def CloseAll():
     pass
 
 
+#Todos "Dis" bloqueia algum filtro (interface)
 def DisCinBin(cond):
     DisableCinza(cond)
     DisableBin(cond)
